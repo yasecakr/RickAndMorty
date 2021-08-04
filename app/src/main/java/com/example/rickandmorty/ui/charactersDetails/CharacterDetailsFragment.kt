@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rickandmorty.R
+import com.example.rickandmorty.databinding.CharacterDetailsFragmentBinding
+import com.example.rickandmorty.repository.CharacterDetailsRepository
 import com.example.rickandmorty.viewModel.CharacterDetailsViewModel
 
 class CharacterDetailsFragment : Fragment() {
@@ -16,6 +18,8 @@ class CharacterDetailsFragment : Fragment() {
     }
 
     private lateinit var viewModel: CharacterDetailsViewModel
+    private lateinit var binding: CharacterDetailsFragmentBinding
+    private lateinit var characterDetailsRepository: CharacterDetailsRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +31,7 @@ class CharacterDetailsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CharacterDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 
 }
