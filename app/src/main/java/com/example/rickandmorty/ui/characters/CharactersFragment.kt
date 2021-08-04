@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.main
+package com.example.rickandmorty.ui.characters
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,25 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rickandmorty.R
+import com.example.rickandmorty.viewModel.CharactersViewModel
 
-class MainFragment : Fragment() {
+class CharactersFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = CharactersFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: CharactersViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+    ): View? {
+        return inflater.inflate(R.layout.characters_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(CharactersViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
