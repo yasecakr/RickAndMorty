@@ -15,6 +15,9 @@ import java.lang.IllegalArgumentException
 class CharactersViewModel(private val charactersRepository: CharactersRepository) : ViewModel() {
 
     var charactersResponse:MutableLiveData<Response<ListResult<Character>>> = MutableLiveData()
+    var isResponseNotSuccess:MutableLiveData<Boolean> = MutableLiveData()
+    var charaters:MutableLiveData<List<Character>> =MutableLiveData<List<Character>>()
+
     init {
         getAllCharacters()
     }
@@ -22,11 +25,13 @@ class CharactersViewModel(private val charactersRepository: CharactersRepository
     private fun getAllCharacters(){
         viewModelScope.launch {
             val response = charactersRepository.getAllCharacters()
-            val a = 1
+            charactersResponse.value =response
 
             if (response.isSuccessful){
+                 charaters.value=response.body()?.results
                 Log.i("FirstChar", "${response.body()}")
-
+            }else{
+                isResponseNotSuccess.value= true
             }
         }
     }

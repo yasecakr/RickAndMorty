@@ -31,6 +31,8 @@
             tools:text="@string/characters_title" />
 
         <androidx.recyclerview.widget.RecyclerView
+            submitNewList="@{viewModel.charaters}"
+            android:id="@+id/rcy_char"
             android:layout_width="409dp"
             android:layout_height="617dp"
             android:layout_marginStart="1dp"
@@ -40,7 +42,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView66" />
+            app:layout_constraintTop_toBottomOf="@+id/textView66"
+            tools:listitem="@layout/character_item"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
