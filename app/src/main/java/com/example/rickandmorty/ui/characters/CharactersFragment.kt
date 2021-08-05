@@ -37,8 +37,8 @@ class CharactersFragment : Fragment() {
     }
     private fun init(){
         charactersRepository = CharactersRepository()
-        viewModel = ViewModelProvider(this,
-        CharactersViewModel.Factory(charactersRepository)).get(CharactersViewModel::class.java)
+        viewModel = ViewModelProvider(this, CharactersViewModel.Factory(charactersRepository))
+            .get(CharactersViewModel::class.java)
         binding.viewModel= viewModel
         binding.lifecycleOwner= this
     }

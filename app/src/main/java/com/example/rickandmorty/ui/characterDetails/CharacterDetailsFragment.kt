@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.charactersDetails
+package com.example.rickandmorty.ui.characterDetails
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.CharacterDetailsFragmentBinding
 import com.example.rickandmorty.repository.CharacterDetailsRepository
 import com.example.rickandmorty.viewModel.CharacterDetailsViewModel
@@ -25,13 +24,21 @@ class CharacterDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.character_details_fragment, container, false)
+        binding= CharacterDetailsFragmentBinding.inflate(inflater)
+        init()
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CharacterDetailsViewModel::class.java)
 
+    }
+    private fun init(){
+        characterDetailsRepository= CharacterDetailsRepository()
+        viewModel = ViewModelProvider(this, CharacterDetailsViewModel.Factory(characterDetailsRepository))
+            .get(CharacterDetailsViewModel::class.java)
+        binding.viewModel=viewModel
+        binding.lifecycleOwner= this
     }
 
 }
