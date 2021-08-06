@@ -17,10 +17,10 @@ fun setRecyclerViewItem(recyclerView: RecyclerView, items: List<Any>?) {
 
             items.let {
                 when (it.first()) {
-                    is Character -> {
+                   /* is Character -> {
                         val adapter: CharacterAdapter = recyclerView.adapter as CharacterAdapter
                         adapter.submitList(items as List<Character>)
-                    }
+                    }*/
 
                 }
             }
@@ -36,7 +36,8 @@ fun setImage(imageView: ImageView, url: String?) {
             .load(url)
             .apply(
                 RequestOptions()
-                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image)
             )
             .into(imageView)
     }

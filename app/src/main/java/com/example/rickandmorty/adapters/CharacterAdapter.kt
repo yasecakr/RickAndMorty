@@ -2,14 +2,16 @@ package com.example.rickandmorty.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.CharacterItemBinding
 import com.example.rickandmorty.model.Character
 
-class CharacterAdapter(private val clickListener:CharactersClickListener): ListAdapter<Character, CharacterAdapter.CharacterViewHolder>(
+class CharacterAdapter(private val clickListener:CharactersClickListener): PagingDataAdapter<Character, CharacterAdapter.CharacterViewHolder>(
     CharacterDiffCallbacks()) {
+
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -34,7 +36,8 @@ class CharacterAdapter(private val clickListener:CharactersClickListener): ListA
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val item =getItem(position)
-        holder.bind(item, clickListener)
+        item?.let {holder.bind(item, clickListener)  }
+
     }
 }
 
@@ -44,7 +47,7 @@ class CharacterDiffCallbacks : DiffUtil.ItemCallback<Character>() {
     }
 
     override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
-        return oldItem == newItem
+        return oldItem.id == newItem.id
     }
 }
 class CharactersClickListener()

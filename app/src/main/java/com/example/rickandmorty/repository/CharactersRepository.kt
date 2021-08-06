@@ -7,7 +7,7 @@ import retrofit2.Response
 
 class CharactersRepository {
 
-    suspend fun getAllCharacters():Response<ListResult<Character>> {
-        return RetrofitInstance.rickAndMortyApi.getAllChar()
+    suspend fun getAllCharacters(page:Int):Response<ListResult<Character>> {
+        return RetrofitInstance.rickAndMortyApi.getAllChar(page)
     }
 }

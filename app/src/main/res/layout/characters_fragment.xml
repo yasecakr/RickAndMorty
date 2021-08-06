@@ -31,7 +31,6 @@
             tools:text="@string/characters_title" />
 
         <androidx.recyclerview.widget.RecyclerView
-            submitNewList="@{viewModel.charaters}"
             android:id="@+id/rcy_char"
             android:layout_width="409dp"
             android:layout_height="617dp"

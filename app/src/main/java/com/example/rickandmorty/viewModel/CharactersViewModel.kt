@@ -1,41 +1,36 @@
 package com.example.rickandmorty.viewModel
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.paging.*
+import com.example.rickandmorty.api.RetrofitInstance
+import com.example.rickandmorty.api.RickAndMortyApi
+import com.example.rickandmorty.dataSource.CharacterListDataSource
 import com.example.rickandmorty.model.Character
-import com.example.rickandmorty.model.ListResult
+import com.example.rickandmorty.model.ResponseInfo
 import com.example.rickandmorty.repository.CharactersRepository
-import kotlinx.coroutines.launch
-import retrofit2.Response
-import java.lang.IllegalArgumentException
+import com.example.rickandmorty.utils.Constants.Companion.DEFAULT_MAX_PAGE_SIZE
+import com.example.rickandmorty.utils.Constants.Companion.DEFAULT_PAGE_SIZE
+import kotlinx.coroutines.flow.Flow
+
+
 
 class CharactersViewModel(private val charactersRepository: CharactersRepository) : ViewModel() {
 
-    var charactersResponse:MutableLiveData<Response<ListResult<Character>>> = MutableLiveData()
-    var isResponseNotSuccess:MutableLiveData<Boolean> = MutableLiveData()
-    var charaters:MutableLiveData<List<Character>> =MutableLiveData<List<Character>>()
+    var charactersResponseInfo:MutableLiveData<ResponseInfo> = MutableLiveData()
+    var isResponseNotSuccess:MutableLiveData<String> = MutableLiveData()
+    var characters:LiveData<PagedList<Character>>? = null
+    lateinit var rickAndMortyApi: RickAndMortyApi;
+    val pagingConfig=PagingConfig(pageSize = DEFAULT_PAGE_SIZE, maxSize = DEFAULT_MAX_PAGE_SIZE)
+
 
     init {
-        getAllCharacters()
+        rickAndMortyApi= RetrofitInstance.rickAndMortyApi
     }
 
-    private fun getAllCharacters(){
-        viewModelScope.launch {
-            val response = charactersRepository.getAllCharacters()
-            charactersResponse.value =response
-
-            if (response.isSuccessful){
-                 charaters.value=response.body()?.results
-                Log.i("FirstChar", "${response.body()}")
-            }else{
-                isResponseNotSuccess.value= true
-            }
-        }
+    fun getPagingListData(): Flow<PagingData<Character>> {
+        return Pager (config = pagingConfig,
+            pagingSourceFactory = {CharacterListDataSource(rickAndMortyApi)}).flow.cachedIn(viewModelScope)
     }
-
 
 
 
@@ -46,5 +41,28 @@ class CharactersViewModel(private val charactersRepository: CharactersRepository
             return CharactersViewModel(charactersRepository) as T
         }
     }
+
+    /*  init {
+        getAllCharacters()
+    }
+
+    private fun getAllCharacters(){
+
+        viewModelScope.launch {
+            val response = charactersRepository.getAllCharacters(1)
+
+
+            if (response.isSuccessful){
+                charactersResponseInfo.value =response.body()?.info
+                characters.value= response.body()?.results
+                //response.body()?.results?.let { charaters.value?.addAll(it) }
+                val nextUrl = response.body()?.info?.next
+
+                Log.i("FirstChar", "${charaters.value?.size}")
+            }else{
+                isResponseNotSuccess.value= response.code().toString()
+            }
+        }
+    }*/
 
 }
