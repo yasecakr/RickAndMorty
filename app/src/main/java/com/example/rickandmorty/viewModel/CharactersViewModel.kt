@@ -16,22 +16,14 @@ import kotlinx.coroutines.flow.Flow
 
 class CharactersViewModel(private val charactersRepository: CharactersRepository) : ViewModel() {
 
-    var charactersResponseInfo:MutableLiveData<ResponseInfo> = MutableLiveData()
-    var isResponseNotSuccess:MutableLiveData<String> = MutableLiveData()
-    var characters:LiveData<PagedList<Character>>? = null
-    lateinit var rickAndMortyApi: RickAndMortyApi;
-    val pagingConfig=PagingConfig(pageSize = DEFAULT_PAGE_SIZE, maxSize = DEFAULT_MAX_PAGE_SIZE)
+    private val rickAndMortyApi  = RetrofitInstance.rickAndMortyApi;
+    private val pagingConfig=PagingConfig(pageSize = DEFAULT_PAGE_SIZE, maxSize = DEFAULT_MAX_PAGE_SIZE)
 
-
-    init {
-        rickAndMortyApi= RetrofitInstance.rickAndMortyApi
-    }
 
     fun getPagingListData(): Flow<PagingData<Character>> {
         return Pager (config = pagingConfig,
             pagingSourceFactory = {CharacterListDataSource(rickAndMortyApi)}).flow.cachedIn(viewModelScope)
     }
-
 
 
 
@@ -42,27 +34,5 @@ class CharactersViewModel(private val charactersRepository: CharactersRepository
         }
     }
 
-    /*  init {
-        getAllCharacters()
-    }
-
-    private fun getAllCharacters(){
-
-        viewModelScope.launch {
-            val response = charactersRepository.getAllCharacters(1)
-
-
-            if (response.isSuccessful){
-                charactersResponseInfo.value =response.body()?.info
-                characters.value= response.body()?.results
-                //response.body()?.results?.let { charaters.value?.addAll(it) }
-                val nextUrl = response.body()?.info?.next
-
-                Log.i("FirstChar", "${charaters.value?.size}")
-            }else{
-                isResponseNotSuccess.value= response.code().toString()
-            }
-        }
-    }*/
 
 }

@@ -50,4 +50,8 @@ class CharacterDiffCallbacks : DiffUtil.ItemCallback<Character>() {
         return oldItem.id == newItem.id
     }
 }
-class CharactersClickListener()
+class CharactersClickListener(
+    val detailsClick:(character:Character)-> Unit
+){
+    fun navigateToCharacterDetails(character: Character)= detailsClick(character)
+}

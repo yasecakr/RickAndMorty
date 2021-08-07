@@ -34,8 +34,9 @@ class CharacterDetailsFragment : Fragment() {
 
     }
     private fun init(){
+        val arguments =CharacterDetailsFragmentArgs.fromBundle(requireArguments())
         characterDetailsRepository= CharacterDetailsRepository()
-        viewModel = ViewModelProvider(this, CharacterDetailsViewModel.Factory(characterDetailsRepository))
+        viewModel = ViewModelProvider(this, CharacterDetailsViewModel.Factory(arguments.charaterId,characterDetailsRepository))
             .get(CharacterDetailsViewModel::class.java)
         binding.viewModel=viewModel
         binding.lifecycleOwner= this

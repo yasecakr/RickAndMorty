@@ -1,7 +1,7 @@
 package com.example.rickandmorty.model
 
 data class Character(
-    val id: Long,
+    val id: Int,
     val name: String,
     val status: String,
     val species: String,

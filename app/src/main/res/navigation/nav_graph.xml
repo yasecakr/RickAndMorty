@@ -9,10 +9,18 @@
         android:id="@+id/characterDetailsFragment"
         android:name="com.example.rickandmorty.ui.characterDetails.CharacterDetailsFragment"
         android:label="character_details_fragment"
-        tools:layout="@layout/character_details_fragment" />
+        tools:layout="@layout/character_details_fragment" >
+        <argument
+            android:name="charaterId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/charactersFragment"
         android:name="com.example.rickandmorty.ui.characters.CharactersFragment"
         android:label="characters_fragment"
-        tools:layout="@layout/characters_fragment" />
+        tools:layout="@layout/characters_fragment" >
+        <action
+            android:id="@+id/action_charactersFragment_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+    </fragment>
 </navigation>
