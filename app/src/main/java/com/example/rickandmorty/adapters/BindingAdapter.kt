@@ -42,6 +42,22 @@ fun setImage(imageView: ImageView, url: String?) {
             .into(imageView)
     }
 }
+@BindingAdapter("imgUrlCircle")
+fun setImageCircle(imageView: ImageView, url: String?) {
+    url?.let {
+
+
+        Glide.with(imageView.context)
+            .load(url)
+            .circleCrop()
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image)
+            )
+            .into(imageView)
+    }
+}
 @BindingAdapter("imgUrlPicasso")
 fun setImageWhitPicasso(imageView: ImageView, url: String?) {
     url?.let {

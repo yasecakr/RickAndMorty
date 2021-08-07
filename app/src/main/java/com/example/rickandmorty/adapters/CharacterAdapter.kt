@@ -23,6 +23,7 @@ class CharacterAdapter(private val clickListener:CharactersClickListener): Pagin
             itemBinding.listItemCharacter =data
             itemBinding.clickListener = clickListener
             itemBinding.executePendingBindings()
+
         }
         companion object{
             fun from(parent: ViewGroup):CharacterViewHolder{

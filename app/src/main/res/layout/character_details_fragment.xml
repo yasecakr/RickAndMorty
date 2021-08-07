@@ -13,15 +13,81 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/characterNameTextViewDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(viewModel.characterId)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="69dp"
+            android:fontFamily="@font/biryani"
+            android:text="@{viewModel.character.name}"
+            android:textColor="#191f5d"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Morty Smith" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/close" />
+
+        <ImageView
+            android:id="@+id/characterImageViewDetails"
+            imgUrlCircle="@{viewModel.character.image}"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/characterNameTextViewDetails"
+            app:srcCompat="@drawable/loading_img" />
+
+        <TextView
+            android:id="@+id/characterDecsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/biryani"
+            android:lineSpacingExtra="10sp"
+            android:textColor="#191f5d"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/characterImageViewDetails"
+            app:layout_constraintTop_toBottomOf="@+id/characterNameTextViewDetails"
+            tools:text="Alive, Human" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="6dp"
+            android:text="@{viewModel.character.gender}"
+            android:fontFamily="@font/biryani"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#191f5d"
+            android:lineSpacingExtra="14sp"
+            tools:text="Male"
+            app:layout_constraintStart_toEndOf="@+id/characterImageViewDetails"
+            app:layout_constraintTop_toBottomOf="@+id/characterDecsTextView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="409dp"
+            android:layout_height="530dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterImageViewDetails"
+            tools:layout_editor_absoluteX="1dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,6 +31,10 @@ class CharacterDetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel.character.observe(viewLifecycleOwner,{
+            binding.characterDecsTextView.text = viewModel.getCharacterDescription()
+
+        })
 
     }
     private fun init(){
