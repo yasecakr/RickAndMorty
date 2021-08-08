@@ -24,7 +24,6 @@ class CharacterListDataSource(val rickAndMortyApi:RickAndMortyApi):PagingSource<
                     val uri = Uri.parse(response.body()?.info?.next)
                     val nextPageQuery = uri.getQueryParameter("page")
                     nextPageNumber= nextPageQuery?.toInt()
-
                 }
             LoadResult.Page(data = response.body()?.results as List<Character>, prevKey = prevKey , nextKey = nextPageNumber)
 

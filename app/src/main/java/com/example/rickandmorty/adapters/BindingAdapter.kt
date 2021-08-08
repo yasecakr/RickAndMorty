@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.rickandmorty.R
 import com.example.rickandmorty.model.Character
+import com.example.rickandmorty.model.Episode
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("submitNewList")
@@ -17,11 +18,10 @@ fun setRecyclerViewItem(recyclerView: RecyclerView, items: List<Any>?) {
 
             items.let {
                 when (it.first()) {
-                   /* is Character -> {
-                        val adapter: CharacterAdapter = recyclerView.adapter as CharacterAdapter
-                        adapter.submitList(items as List<Character>)
-                    }*/
-
+                    is Episode -> {
+                        val adapter: EpisodesAdapter = recyclerView.adapter as EpisodesAdapter
+                        adapter.submitList(items as List<Episode>)
+                    }
                 }
             }
         }

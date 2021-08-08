@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.rickandmorty.adapters.EpisodeClickListener
+import com.example.rickandmorty.adapters.EpisodesAdapter
 import com.example.rickandmorty.databinding.CharacterDetailsFragmentBinding
 import com.example.rickandmorty.repository.CharacterDetailsRepository
 import com.example.rickandmorty.viewModel.CharacterDetailsViewModel
@@ -31,8 +33,11 @@ class CharacterDetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        binding.recyclerEpisodes.adapter=EpisodesAdapter(EpisodeClickListener())
+
         viewModel.character.observe(viewLifecycleOwner,{
             binding.characterDecsTextView.text = viewModel.getCharacterDescription()
+            viewModel.getEpisodes()
 
         })
 
