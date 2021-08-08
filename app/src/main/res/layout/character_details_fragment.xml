@@ -105,7 +105,7 @@
             android:layout_marginTop="28dp"
 
             android:fontFamily="@font/biryani"
-            android:text="TextView"
+            android:text="@string/episodes"
             android:textColor="#191f5d"
             android:textSize="16sp"
             android:textStyle="bold"

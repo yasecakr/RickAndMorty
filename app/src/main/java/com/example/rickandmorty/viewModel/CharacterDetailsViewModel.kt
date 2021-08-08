@@ -45,24 +45,20 @@ class CharacterDetailsViewModel(
         return character.value?.status.toString() + "," + character.value?.species.toString()
     }
 
-     fun getEpisodes(){
-         val episodesArray:ArrayList<Episode> = ArrayList()
-         viewModelScope.launch {
-            character.value?.episode?.forEach { url->
+     suspend fun getAllEpisodes(){
+         character.value?.episode?.forEach { url->
             val uri = Uri.parse(url).encodedPath.toString()
-                val array = uri.split("/").toTypedArray()
-                val episodeId = array[array.size-1].toInt()
-                val episodeResponse = characterDetailsRepository.getEpisodeResponse(episodeId)
-                if (episodeResponse.isSuccessful){
-                    episodesArray.add(episodeResponse.body()!!)
-                    episodeResponse.body()?.let { episodes.value?.add(it) }
-                }else{
-                    Log.d("Episode","Response not success ${episodeResponse.code()}")
-                }
+            val array = uri.split("/").toTypedArray()
+            val episodeId = array[array.size-1].toInt()
+            val episodeResponse = characterDetailsRepository.getEpisodeResponse(episodeId)
+            if (episodeResponse.isSuccessful){
+                episodeResponse.body()?.let { episodes.value?.add(it) }
+            }else{
+                Log.d("Episode","Response not success ${episodeResponse.code()}")
             }
-             episodes.value?.addAll(episodesArray)
-         }
+        }
     }
+
 
 
     open class Factory(private val characterId:Int, private val characterDetailsRepository: CharacterDetailsRepository): ViewModelProvider.Factory{

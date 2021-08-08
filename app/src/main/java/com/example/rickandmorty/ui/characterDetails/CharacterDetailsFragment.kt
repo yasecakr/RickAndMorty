@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.example.rickandmorty.adapters.EpisodeClickListener
 import com.example.rickandmorty.adapters.EpisodesAdapter
 import com.example.rickandmorty.databinding.CharacterDetailsFragmentBinding
+import com.example.rickandmorty.model.Character
+import com.example.rickandmorty.model.Episode
 import com.example.rickandmorty.repository.CharacterDetailsRepository
 import com.example.rickandmorty.viewModel.CharacterDetailsViewModel
 
@@ -21,6 +24,7 @@ class CharacterDetailsFragment : Fragment() {
     private lateinit var viewModel: CharacterDetailsViewModel
     private lateinit var binding: CharacterDetailsFragmentBinding
     private lateinit var characterDetailsRepository: CharacterDetailsRepository
+    private lateinit var recyclerAdapterEpisodes: EpisodesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +41,10 @@ class CharacterDetailsFragment : Fragment() {
 
         viewModel.character.observe(viewLifecycleOwner,{
             binding.characterDecsTextView.text = viewModel.getCharacterDescription()
-            viewModel.getEpisodes()
+            lifecycleScope.launchWhenCreated {
+                viewModel.getAllEpisodes()
+                submitListRecyclerrr(viewModel.episodes.value!!)
+            }
 
         })
 
@@ -49,6 +56,15 @@ class CharacterDetailsFragment : Fragment() {
             .get(CharacterDetailsViewModel::class.java)
         binding.viewModel=viewModel
         binding.lifecycleOwner= this
+    }
+    private fun submitListRecyclerrr(episodes: ArrayList<Episode>){
+        binding.recyclerEpisodes.apply {
+            recyclerAdapterEpisodes= EpisodesAdapter(EpisodeClickListener())
+            adapter= recyclerAdapterEpisodes
+            recyclerAdapterEpisodes.submitList(episodes)
+
+
+        }
     }
 
 }

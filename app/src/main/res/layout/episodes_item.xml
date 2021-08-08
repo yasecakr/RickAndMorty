@@ -21,10 +21,14 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{listItemEpisode.name}"
+            android:fontFamily="@font/biryani"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#191f5d"
+            tools:text="Episode Name (S1 - E1)"
+            android:layout_marginStart="20dp"
+            android:text="@{listItemEpisode.episodeDescription()}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.213"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
