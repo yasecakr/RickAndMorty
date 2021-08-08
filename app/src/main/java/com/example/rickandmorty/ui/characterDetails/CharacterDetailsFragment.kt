@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.rickandmorty.R
@@ -60,6 +61,10 @@ class CharacterDetailsFragment : Fragment() {
                 false-> unShowEpisodesLayout()
             }
         })
+        viewModel.isError.observe(viewLifecycleOwner,{
+            characterResponseFailed(it)
+
+        })
 
         binding.closeImageButton.setOnClickListener {
             navigateToCharacters()
@@ -97,6 +102,9 @@ class CharacterDetailsFragment : Fragment() {
     private fun showEpisodesLayout(){
         binding.episodeImageButton.setImageResource(R.drawable.resources_nav_bar_up)
         binding.episodesLayout.visibility = VISIBLE
+    }
+    private fun characterResponseFailed(error: String) {
+        Toast.makeText(context, "Character Response failed: Code:$error", Toast.LENGTH_LONG).show()
     }
 
 }

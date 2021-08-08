@@ -17,7 +17,7 @@ class CharacterDetailsViewModel(
     private val characterDetailsRepository: CharacterDetailsRepository) : ViewModel() {
 
     val character:MutableLiveData<Character> = MutableLiveData()
-    val isError: MutableLiveData<Boolean> = MutableLiveData()
+    val isError: MutableLiveData<String> = MutableLiveData()
     val episodes:MutableLiveData<ArrayList<Episode>> = MutableLiveData(ArrayList())
     val showEpisodes: MutableLiveData<Boolean> = MutableLiveData(false)
     val episodesReady:MutableLiveData<Boolean> = MutableLiveData(false)
@@ -32,7 +32,7 @@ class CharacterDetailsViewModel(
             if (response.isSuccessful){
                 character.value= response.body()
             }else{
-                isError.value = true
+                isError.value = response.code().toString()
             }
         }
     }
