@@ -2,6 +2,7 @@ package com.example.rickandmorty.viewModel
 
 import android.net.Uri
 import android.net.UrlQuerySanitizer
+import android.text.BoringLayout
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,10 +26,11 @@ class CharacterDetailsViewModel(
     val character:MutableLiveData<Character> = MutableLiveData()
     val isError: MutableLiveData<Boolean> = MutableLiveData()
     val episodes:MutableLiveData<ArrayList<Episode>> = MutableLiveData(ArrayList())
+    val showEpisodes: MutableLiveData<Boolean> = MutableLiveData(false)
+    val episodesReady:MutableLiveData<Boolean> = MutableLiveData(false)
 
     init {
         initCharacter()
-
     }
 
     private fun initCharacter() {
@@ -44,18 +46,51 @@ class CharacterDetailsViewModel(
     fun getCharacterDescription():String{
         return character.value?.status.toString() + "," + character.value?.species.toString()
     }
+    suspend fun getAllEpisodes(){
+        episodesReady.value = false
 
-     suspend fun getAllEpisodes(){
          character.value?.episode?.forEach { url->
-            val uri = Uri.parse(url).encodedPath.toString()
-            val array = uri.split("/").toTypedArray()
-            val episodeId = array[array.size-1].toInt()
-            val episodeResponse = characterDetailsRepository.getEpisodeResponse(episodeId)
-            if (episodeResponse.isSuccessful){
-                episodeResponse.body()?.let { episodes.value?.add(it) }
-            }else{
-                Log.d("Episode","Response not success ${episodeResponse.code()}")
-            }
+             val uri = Uri.parse(url).encodedPath.toString()
+             val array = uri.split("/").toTypedArray()
+             val episodeId = array[array.size - 1].toInt()
+             val episodeResponse = characterDetailsRepository.getEpisodeResponse(episodeId)
+             if (episodeResponse.isSuccessful) {
+                 episodeResponse.body()?.let { episodes.value?.add(it) }
+             } else {
+                 Log.d("Episode", "Response not success ${episodeResponse.code()}")
+             }
+         }
+        episodesReady.value = true
+
+
+        /* var iterator =0
+         val allcall:ArrayList<String> = character.value?.episode as ArrayList<String>
+         val size = allcall.size
+         var flag = true
+         var pageNumber= 10
+
+         while (iterator != pageNumber && flag) {
+             viewModelScope.launch {
+                 val uri = Uri.parse(allcall[iterator]).encodedPath.toString()
+                 val array = uri.split("/").toTypedArray()
+                 val episodeId = array[array.size - 1].toInt()
+                 val episodeResponse = characterDetailsRepository.getEpisodeResponse(episodeId)
+                 if (episodeResponse.isSuccessful) {
+                     episodeResponse.body()?.let { episodes.value?.add(it) }
+                     Log.d("Episode", "Response not success ${episodeResponse.code()}")
+                 } else {
+                     Log.d("Episode", "Response not success ${episodeResponse.code()}")
+                 }
+                 iterator++
+                 if (iterator==pageNumber) pageNumber += 10
+                 else if (iterator== size-1) flag=false
+             }
+         }*/
+    }
+    fun episodesIsShow(){
+        when(showEpisodes.value){
+            true -> showEpisodes.value= false
+            false -> showEpisodes.value= true
         }
     }
 

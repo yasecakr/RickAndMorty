@@ -15,21 +15,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/biryani"
-            android:textStyle="normal"
-            android:textSize="14sp"
-            android:textColor="#191f5d"
-            tools:text="Episode Name (S1 - E1)"
             android:layout_marginStart="20dp"
+            android:fontFamily="@font/biryani"
             android:text="@{listItemEpisode.episodeDescription()}"
+            android:textColor="#191f5d"
+            android:textSize="14sp"
+            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Episode Name (S1 - E1)" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

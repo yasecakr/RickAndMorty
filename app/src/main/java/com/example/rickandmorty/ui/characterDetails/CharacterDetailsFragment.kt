@@ -5,12 +5,14 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.rickandmorty.R
 import com.example.rickandmorty.adapters.EpisodeClickListener
 import com.example.rickandmorty.adapters.EpisodesAdapter
 import com.example.rickandmorty.databinding.CharacterDetailsFragmentBinding
-import com.example.rickandmorty.model.Character
 import com.example.rickandmorty.model.Episode
 import com.example.rickandmorty.repository.CharacterDetailsRepository
 import com.example.rickandmorty.viewModel.CharacterDetailsViewModel
@@ -46,7 +48,29 @@ class CharacterDetailsFragment : Fragment() {
                 submitListRecyclerrr(viewModel.episodes.value!!)
             }
 
+
         })
+        viewModel.episodesReady.observe(viewLifecycleOwner, {
+            when(it) {
+                true ->binding.progressBar.visibility= GONE
+                false -> binding.progressBar.visibility= VISIBLE
+            }
+        })
+
+        viewModel.showEpisodes.observe(viewLifecycleOwner, {
+            when(it){
+                true->showEpisodesLayout()
+                false-> unShowEpisodesLayout()
+            }
+        })
+
+        binding.closeImageButton.setOnClickListener {
+            navigateToCharacters()
+        }
+
+        binding.episodeImageButton.setOnClickListener {
+            viewModel.episodesIsShow()
+        }
 
     }
     private fun init(){
@@ -63,8 +87,19 @@ class CharacterDetailsFragment : Fragment() {
             adapter= recyclerAdapterEpisodes
             recyclerAdapterEpisodes.submitList(episodes)
 
-
         }
+    }
+    private fun navigateToCharacters(){
+        findNavController().navigate(CharacterDetailsFragmentDirections.actionCharacterDetailsFragmentToCharactersFragment())
+    }
+    private fun unShowEpisodesLayout(){
+        binding.episodeImageButton.setImageResource(R.drawable.resources_nav_bar_back)
+        binding.episodesLayout.visibility = GONE
+
+    }
+    private fun showEpisodesLayout(){
+        binding.episodeImageButton.setImageResource(R.drawable.resources_nav_bar_up)
+        binding.episodesLayout.visibility = VISIBLE
     }
 
 }

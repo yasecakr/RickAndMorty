@@ -31,11 +31,11 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/closeImageButton"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/close" />
@@ -82,21 +82,6 @@
             app:layout_constraintStart_toEndOf="@+id/characterImageViewDetails"
             app:layout_constraintTop_toBottomOf="@+id/characterDecsTextView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerEpisodes"
-            android:layout_width="410dp"
-            android:layout_height="476dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="4dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:listitem="@layout/episodes_item"/>
-
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
@@ -114,7 +99,7 @@
             tools:text="Episodes" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/episodeImageButton"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="20dp"
@@ -123,6 +108,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView5"
             app:srcCompat="@drawable/resources_nav_bar_back" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/episodesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerEpisodes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/episodes_item" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="174dp"
+                android:layout_height="152dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recyclerEpisodes"
+                app:layout_constraintVertical_bias="0.368" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

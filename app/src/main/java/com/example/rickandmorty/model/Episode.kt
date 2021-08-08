@@ -14,11 +14,10 @@ data class Episode(
 ){
     fun episodeDescription():String{
         var text=name
-        var season= episode.filter { it.toString()!="0"}
+        var season= episode
         val stringBuilder= StringBuilder(season)
-        season=stringBuilder.insert(2, "-").toString()
+        season=stringBuilder.insert(3, "-").toString()
         text+= " ($season)"
-        Log.d("REMOVEIF", "$text")
         return text
 
     }
