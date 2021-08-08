@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.CharacterItemBinding
-import com.example.rickandmorty.model.Character
+import com.example.rickandmorty.data.model.Character
 
 class CharacterAdapter(private val clickListener:CharactersClickListener): PagingDataAdapter<Character, CharacterAdapter.CharacterViewHolder>(
     CharacterDiffCallbacks()) {
@@ -52,7 +52,7 @@ class CharacterDiffCallbacks : DiffUtil.ItemCallback<Character>() {
     }
 }
 class CharactersClickListener(
-    val detailsClick:(character:Character)-> Unit
+    val detailsClick:(character: Character)-> Unit
 ){
     fun navigateToCharacterDetails(character: Character)= detailsClick(character)
 }

@@ -1,22 +1,15 @@
-package com.example.rickandmorty.viewModel
+package com.example.rickandmorty.ui.characterDetails
 
 import android.net.Uri
-import android.net.UrlQuerySanitizer
-import android.text.BoringLayout
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.api.RetrofitInstance
-import com.example.rickandmorty.api.RickAndMortyApi
-import com.example.rickandmorty.model.Character
-import com.example.rickandmorty.model.Episode
+import com.example.rickandmorty.data.model.Character
+import com.example.rickandmorty.data.model.Episode
 import com.example.rickandmorty.repository.CharacterDetailsRepository
-import com.example.rickandmorty.utils.Constants
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.IllegalArgumentException
 
 class CharacterDetailsViewModel(

@@ -1,12 +1,12 @@
-package com.example.rickandmorty.dataSource
+package com.example.rickandmorty.data
 
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.rickandmorty.api.RickAndMortyApi
-import com.example.rickandmorty.model.Character
+import com.example.rickandmorty.data.api.RickAndMortyApi
+import com.example.rickandmorty.data.model.Character
 
-class CharacterListDataSource(val rickAndMortyApi:RickAndMortyApi):PagingSource<Int, Character>() {
+class CharacterListDataSource(val rickAndMortyApi: RickAndMortyApi):PagingSource<Int, Character>() {
     override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
         return state.anchorPosition?.let {
             state.closestPageToPosition(it)?.prevKey?.plus(1)

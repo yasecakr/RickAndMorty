@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.adapters.CharacterAdapter
 import com.example.rickandmorty.adapters.CharactersClickListener
 import com.example.rickandmorty.databinding.CharactersFragmentBinding
-import com.example.rickandmorty.model.Character
+import com.example.rickandmorty.data.model.Character
 import com.example.rickandmorty.repository.CharactersRepository
-import com.example.rickandmorty.viewModel.CharactersViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 class CharactersFragment : Fragment() {
@@ -77,7 +76,7 @@ class CharactersFragment : Fragment() {
         binding.lifecycleOwner= this
     }
 
-    private fun navigateToCharacterDetails(character:Character){
+    private fun navigateToCharacterDetails(character: Character){
         findNavController().navigate(CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailsFragment(charaterId = character.id))
 
   }

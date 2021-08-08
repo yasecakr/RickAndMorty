@@ -1,9 +1,8 @@
 package com.example.rickandmorty.repository
 
-import android.util.Log
-import com.example.rickandmorty.api.RetrofitInstance
-import com.example.rickandmorty.model.Character
-import com.example.rickandmorty.model.Episode
+import com.example.rickandmorty.data.api.RetrofitInstance
+import com.example.rickandmorty.data.model.Character
+import com.example.rickandmorty.data.model.Episode
 import retrofit2.Response
 
 class CharacterDetailsRepository {

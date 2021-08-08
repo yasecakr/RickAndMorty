@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.rickandmorty.R
-import com.example.rickandmorty.model.Character
-import com.example.rickandmorty.model.Episode
+import com.example.rickandmorty.data.model.Episode
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("submitNewList")

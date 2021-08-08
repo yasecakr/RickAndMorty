@@ -1,12 +1,10 @@
-package com.example.rickandmorty.viewModel
+package com.example.rickandmorty.ui.characters
 
 import androidx.lifecycle.*
 import androidx.paging.*
-import com.example.rickandmorty.api.RetrofitInstance
-import com.example.rickandmorty.api.RickAndMortyApi
-import com.example.rickandmorty.dataSource.CharacterListDataSource
-import com.example.rickandmorty.model.Character
-import com.example.rickandmorty.model.ResponseInfo
+import com.example.rickandmorty.data.api.RetrofitInstance
+import com.example.rickandmorty.data.CharacterListDataSource
+import com.example.rickandmorty.data.model.Character
 import com.example.rickandmorty.repository.CharactersRepository
 import com.example.rickandmorty.utils.Constants.Companion.DEFAULT_MAX_PAGE_SIZE
 import com.example.rickandmorty.utils.Constants.Companion.DEFAULT_PAGE_SIZE
@@ -22,7 +20,7 @@ class CharactersViewModel(private val charactersRepository: CharactersRepository
 
     fun getPagingListData(): Flow<PagingData<Character>> {
         return Pager (config = pagingConfig,
-            pagingSourceFactory = {CharacterListDataSource(rickAndMortyApi)}).flow.cachedIn(viewModelScope)
+            pagingSourceFactory = { CharacterListDataSource(rickAndMortyApi) }).flow.cachedIn(viewModelScope)
     }
 
 

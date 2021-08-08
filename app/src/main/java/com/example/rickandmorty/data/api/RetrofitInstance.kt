@@ -1,4 +1,4 @@
-package com.example.rickandmorty.api
+package com.example.rickandmorty.data.api
 
 import com.example.rickandmorty.utils.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
@@ -12,7 +12,7 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    val rickAndMortyApi:RickAndMortyApi by lazy {
+    val rickAndMortyApi: RickAndMortyApi by lazy {
         retrofit.create(RickAndMortyApi::class.java)
     }
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="listItemEpisode"
-            type="com.example.rickandmorty.model.Episode" />
+            type="com.example.rickandmorty.data.model.Episode" />
         <variable
             name="episodeClickListener"
             type="com.example.rickandmorty.adapters.EpisodeClickListener" />

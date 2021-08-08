@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.EpisodesItemBinding
-import com.example.rickandmorty.model.Episode
+import com.example.rickandmorty.data.model.Episode
 
 class EpisodesAdapter(private val clickListener:EpisodeClickListener): androidx.recyclerview.widget.ListAdapter<Episode, EpisodesAdapter.EpisodeViewHolder>(
     EpisodeDiffCallbacks()) {
