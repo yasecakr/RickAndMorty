@@ -1,4 +1,4 @@
-package com.example.rickandmorty.adapters
+package com.example.rickandmorty.ui.characterDetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -51,4 +51,4 @@ class EpisodeDiffCallbacks : DiffUtil.ItemCallback<Episode>() {
         return oldItem.id == newItem.id
     }
 }
-class EpisodeClickListener()
+class EpisodeClickListener

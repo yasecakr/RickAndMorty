@@ -11,8 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmorty.adapters.CharacterAdapter
-import com.example.rickandmorty.adapters.CharactersClickListener
 import com.example.rickandmorty.databinding.CharactersFragmentBinding
 import com.example.rickandmorty.data.model.Character
 import com.example.rickandmorty.repository.CharactersRepository

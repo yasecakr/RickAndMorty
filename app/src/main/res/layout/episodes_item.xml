@@ -9,7 +9,7 @@
             type="com.example.rickandmorty.data.model.Episode" />
         <variable
             name="episodeClickListener"
-            type="com.example.rickandmorty.adapters.EpisodeClickListener" />
+            type="com.example.rickandmorty.ui.characterDetails.EpisodeClickListener" />
 
     </data>
 

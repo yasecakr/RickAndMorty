@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.rickandmorty.R
-import com.example.rickandmorty.adapters.EpisodeClickListener
-import com.example.rickandmorty.adapters.EpisodesAdapter
 import com.example.rickandmorty.databinding.CharacterDetailsFragmentBinding
 import com.example.rickandmorty.data.model.Episode
 import com.example.rickandmorty.repository.CharacterDetailsRepository

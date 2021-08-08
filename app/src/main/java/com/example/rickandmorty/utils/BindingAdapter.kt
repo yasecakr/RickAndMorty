@@ -1,4 +1,4 @@
-package com.example.rickandmorty.adapters
+package com.example.rickandmorty.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.rickandmorty.R
 import com.example.rickandmorty.data.model.Episode
+import com.example.rickandmorty.ui.characterDetails.EpisodesAdapter
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("submitNewList")

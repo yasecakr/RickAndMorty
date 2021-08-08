@@ -9,7 +9,7 @@
             type="com.example.rickandmorty.data.model.Character" />
         <variable
             name="clickListener"
-            type="com.example.rickandmorty.adapters.CharactersClickListener" />
+            type="com.example.rickandmorty.ui.characters.CharactersClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
